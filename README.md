@@ -6,6 +6,8 @@
 
 用你已经在用的 **Codex 或 Claude Code** 就能开始。
 
+这也是一个可独立安装的 **「帮你设计自己的雅思备考系统」Skill**：先了解你，再帮你搭建。
+
 ## 为什么做这套系统？
 
 ### 适合工作党，跟着你的时间走
@@ -56,9 +58,11 @@
 
 复制下面这段话，发给 Codex 或 Claude Code：
 
-> 请帮我下载并配置这个雅思备考项目：https://github.com/jameelovecat/ielts-study-companion 。在电脑上为它单独建一个文件夹，阅读项目里的备考规则，完成初始化，并检查需要的工具。先了解我的考试类型、目标和每天能练习多久。没有考试日期也可以先开始。能直接完成的步骤请帮我完成，需要我操作时一次只告诉我一步。
+> 请帮我安装这个仓库里的 ielts-study Skill：https://github.com/jameelovecat/ielts-study-companion ，位置是 skills/ielts-study。使用当前工具支持的个人 Skill 安装位置，先检查同名 Skill，已有时不要覆盖。安装后读取 SKILL.md，帮我设计并搭建自己的雅思备考系统：先了解目标、时间和现有资料，提出简短建议，关键选择让我确认，再实际搭建。需要我操作时一次只告诉我一步。
 
-如果工具需要你授权访问文件夹或联网，按提示操作即可。需要可用的 Codex 或 Claude Code，工具本身可能收费。
+安装后可以直接说：**「帮我设计自己的雅思备考系统。」**
+
+如果工具需要重新启动或重新打开对话才能发现新 Skill，按助手提示操作。如果需要授权访问文件夹或联网，按提示操作即可。需要可用的 Codex 或 Claude Code，工具本身可能收费。
 
 ### ２．提供自己的资料
 
@@ -111,7 +115,7 @@ AI 的批改与估分用于辅助学习，不是官方成绩。文字口语回�
 
 需要 Python 3.10 及以上版本，无第三方 Python 依赖。Codex 从 `AGENTS.md` 读取项目指令，Claude Code 从 `CLAUDE.md` 读取；两者使用同一份 `skills/ielts-study/SKILL.md`。
 
-默认私有工作区为 `workspace/`，已加入 `.gitignore`。资料目录在工作区的 `config.json` 中配置，索引只发现文件，内容对应关系由助手核验。辅助脚本不提供自动评分、录音转写或网页界面。
+独立安装包为 `skills/ielts-study/`，包含规则、初始化与复习脚本、空白模板和数据格式说明，不依赖仓库外部文件。脚本以 `--workspace` 指定私有目录；未指定时默认当前工作目录下的 `workspace/`。仓库内该目录已加入 `.gitignore`。资料目录在工作区的 `config.json` 中配置，索引只发现文件，内容对应关系由助手核验。辅助脚本不提供自动评分、录音转写或网页界面。
 
 ```bash
 python3 scripts/study.py init
