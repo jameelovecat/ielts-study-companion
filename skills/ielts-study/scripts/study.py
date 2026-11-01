@@ -37,16 +37,22 @@ def write_json(path, data):
 
 def initialize(workspace):
     workspace.mkdir(parents=True, exist_ok=True)
-    for folder in ('materials', '写作', '录音'):
+    for folder in ('materials', '写作', '录音', '分项学习', '口语备考本'):
         (workspace / folder).mkdir(exist_ok=True)
-    for source in (PROJECT / 'templates').glob('*.md'):
-        dest = workspace / source.name
+    for source in (PROJECT / 'templates').rglob('*.md'):
+        dest = workspace / source.relative_to(PROJECT / 'templates')
+        dest.parent.mkdir(parents=True, exist_ok=True)
         # Exclusive creation preserves existing user edits.
         try:
             with dest.open('x', encoding='utf-8') as stream:
                 stream.write(source.read_text(encoding='utf-8'))
         except FileExistsError:
             pass
+    try:
+        with (workspace / '.gitignore').open('x', encoding='utf-8') as stream:
+            stream.write('*\n')
+    except FileExistsError:
+        pass
     defaults = {'config.json': {'material_roots': ['materials'],
                                 'review_intervals_days': INTERVALS},
                 '表达本.json': {'entries': [], 'reviews': []}}
@@ -148,7 +154,7 @@ def review_expression(workspace, ident, correct, today):
         raise ValueError(f'Unknown expression ID: {ident}')
     if item.get('last_reviewed') and date.fromisoformat(item['last_reviewed']) > today:
         raise ValueError('Review date precedes the most recent review')
-    if item.get('last_reviewed') == today.isoformat():
+    if item.get('last_reviewed') == today.isoformat() and (correct or item['level'] == 0):
         return {'id': ident, 'status': 'already_reviewed_today', 'level': item['level'],
                 'due': item['due']}
     old_level = item['level']

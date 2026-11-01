@@ -93,6 +93,19 @@ class StudyTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             study.due_expressions(self.root, date(2026, 11, 1))
 
+    def test_same_day_failure_overrides_success(self):
+        self.seed()
+        study.review_expression(self.root, 'e1', True, date(2026, 11, 1))
+        result = study.review_expression(self.root, 'e1', False, date(2026, 11, 1))
+        self.assertEqual((result['level'], result['due']), (0, '2026-11-02'))
+        result = study.review_expression(self.root, 'e1', True, date(2026, 11, 1))
+        self.assertEqual(result['level'], 0)
+
+    def test_init_creates_plan_diagnostic_course_and_privacy_files(self):
+        for name in ('备考计划.md', '诊断记录.md', '分项学习/学习记录.md', '.gitignore'):
+            self.assertTrue((self.root / name).is_file(), name)
+        self.assertEqual((self.root / '.gitignore').read_text(), '*\n')
+
     def test_backdated_review_rejected(self):
         self.seed(last_reviewed='2026-11-02')
         with self.assertRaises(ValueError):
