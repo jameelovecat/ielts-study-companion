@@ -33,3 +33,7 @@
 ## 示例数据
 
 `examples/session.md` 完全虚构，不能算成使用者的实际成绩。此项目不包含自动答案抓取、自动音频识别或官方评分模型。
+
+## 表达类型
+
+词条可增加可选字段 `type`：`collocation`（词汇搭配）、`sentence_pattern`（句型）、`answer_structure`（回答结构）。旧词条未设类型时按普通表达处理。各类沿用同一复习等级与日期规则。`expression`存表达或模板，`meaning`存中文提示与用途，`example`存具体示范，`source`标明练习出处。
