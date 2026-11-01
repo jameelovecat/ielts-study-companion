@@ -1,0 +1,13 @@
+workspace/
+__pycache__/
+*.py[cod]
+.DS_Store
+.env
+.env.*
+!.env.example
+*.pdf
+*.mp3
+*.m4a
+*.wav
+*.mp4
+*.mov
