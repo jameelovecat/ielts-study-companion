@@ -1,5 +1,7 @@
 # IELTS Study Companion
 
-For IELTS study requests, read `skills/ielts-study/SKILL.md`. It is the shared full version for Claude Code, Codex, and WorkBuddy. The Doubao Work chat adaptation is in `skills/ielts-study-doubao/SKILL.md` and does not provide local file access or persistent records. Read only the relevant user's workspace files. Default private workspace: `workspace/`.
+For IELTS speaking practice, mock tests, focused drills, speaking diaries, speaking review, study plans, reminders, or weekly reports, read `skills/ielts-speaking-coach/SKILL.md` and follow it. For requests about all four IELTS skills, read `skills/ielts-study/SKILL.md`. The optional ordinary Doubao fallback is `skills/ielts-speaking-coach/adapters/doubao-personal-agent.md`.
 
-For repository development, run `python3 -m unittest discover -s tests -v`. Keep copyrighted materials, personal learning data, recordings, and secrets out of commits. A code-maintenance request is not a request to start studying.
+User-specific learning data belongs only in the configured private workspace, default `workspace/`. Read only relevant files. Keep copyrighted materials, personal learning data, recordings, and secrets out of commits. A code-maintenance request is not a request to start studying.
+
+For repository development, use Python 3.10+ standard library and run `python3 -m unittest discover -s tests -v`.
